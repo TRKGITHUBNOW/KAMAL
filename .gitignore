@@ -1,0 +1,6 @@
+
+#comments can be placed...
+/text.txt
+*.js
+!kmail.js
+build/

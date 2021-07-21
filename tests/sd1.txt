@@ -1,0 +1,141 @@
+Q-22. Write an SQL query to fetch worker names with salaries >= 50000 and <= 100000. 
+SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) As Worker_Name, Salary
+FROM worker  WHERE WORKER_ID IN  (SELECT WORKER_ID FROM worker  WHERE Salary BETWEEN 50000 AND 100000);
+OR
+SELECT first_name, last_name, salary, department_id
+FROM employees
+WHERE salary NOT BETWEEN 10000 AND 15000 
+AND department_id IN (30, 100);
+==============
+List the employee whose employee number is 100.
+Select * from Employee where employee_Num=100;
+================
+Write a query in SQL to find the number of employees in each department along with the department code.
+SELECT emp_dept, COUNT(*)   FROM emp_details   GROUP BY emp_dept;
+=====================
+CREATE TABLE EMP
+       (EMPNO NUMBER(4) NOT NULL,
+        ENAME VARCHAR2(10),
+        JOB VARCHAR2(9),
+        MGR NUMBER(4),
+        HIREDATE DATE,
+        SAL NUMBER(7, 2),
+        COMM NUMBER(7, 2),
+        DEPTNO NUMBER(2));
+
+INSERT INTO EMP VALUES  (7369, 'SMITH',  'CLERK',     7902, TO_DATE('17-DEC-1980', 'DD-MON-YYYY'),  800, NULL, 20);
+INSERT INTO EMP VALUES  (7499, 'ALLEN',  'SALESMAN',  7698, TO_DATE('20-FEB-1981', 'DD-MON-YYYY'), 1600,  300, 30);
+INSERT INTO EMP VALUES (7521, 'WARD',   'SALESMAN',  7698,  TO_DATE('22-FEB-1981', 'DD-MON-YYYY'), 1250,  500, 30);
+INSERT INTO EMP VALUES (7566, 'JONES',  'MANAGER',   7839, TO_DATE('2-APR-1981', 'DD-MON-YYYY'),  2975, NULL, 20);
+INSERT INTO EMP VALUES (7654, 'MARTIN', 'SALESMAN',  7698, TO_DATE('28-SEP-1981', 'DD-MON-YYYY'), 1250, 1400, 30);
+INSERT INTO EMP VALUES (7698, 'BLAKE',  'MANAGER',   7839, TO_DATE('1-MAY-1981', 'DD-MON-YYYY'),  2850, NULL, 30); 
+INSERT INTO EMP VALUES   (7782, 'CLARK',  'MANAGER',   7839,  TO_DATE('9-JUN-1981', 'DD-MON-YYYY'),  2450, NULL, 10);
+INSERT INTO EMP VALUES  (7788, 'SCOTT',  'ANALYST',   7566,  TO_DATE('09-DEC-1982', 'DD-MON-YYYY'), 3000, NULL, 20);
+INSERT INTO EMP VALUES  (7839, 'KING',   'PRESIDENT', NULL, TO_DATE('17-NOV-1981', 'DD-MON-YYYY'), 5000, NULL, 10);
+INSERT INTO EMP VALUES  (7844, 'TURNER', 'SALESMAN',  7698,  TO_DATE('8-SEP-1981', 'DD-MON-YYYY'),  1500,    0, 30);
+INSERT INTO EMP VALUES  (7876, 'ADAMS',  'CLERK',     7788, TO_DATE('12-JAN-1983', 'DD-MON-YYYY'), 1100, NULL, 20);
+INSERT INTO EMP VALUES  (7900, 'JAMES',  'CLERK',     7698,  TO_DATE('3-DEC-1981', 'DD-MON-YYYY'),   950, NULL, 30);
+INSERT INTO EMP VALUES  (7902, 'FORD',   'ANALYST',   7566,  TO_DATE('3-DEC-1981', 'DD-MON-YYYY'),  3000, NULL, 20);
+INSERT INTO EMP VALUES  (7934, 'MILLER', 'CLERK',     7782,  TO_DATE('23-JAN-1982', 'DD-MON-YYYY'), 1300, NULL, 10);
+
+Dept:
+
+CREATE TABLE DEPT 
+       (DEPTNO NUMBER(2),
+        DNAME VARCHAR2(14),
+        LOC VARCHAR2(13) );
+
+INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO DEPT VALUES (20, 'RESEARCH',   'DALLAS');
+INSERT INTO DEPT VALUES (30, 'SALES',      'CHICAGO');
+INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
+
+select count(*) as count,dept.DNAME  from emp 
+inner join dept on emp.DEPTNO = dept.DEPTNO 
+group by dept.DNAME
+=====================
+
+-- creating Employee table in Oracle 
+CREATE TABLE Employee (name varchar(10), salary int); 
+inserting sample data into Employee table INSERT INTO Employee VALUES ('Rick', 3000); 
+INSERT INTO Employee VALUES ('John', 4000); INSERT INTO Employee VALUES ('Shane', 3000); 
+INSERT INTO Employee VALUES ('Peter', 5000); INSERT INTO Employee VALUES ('Jackob', 7000);
+
+
+SQL Query:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+for the 2nd maximum you can replace N with 2, and for 3rd maximum replace N with 3, here is the output:
+
+2nd highest salary:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)SELECT name, salary 
+FROM #Employee e1
+WHERE 2-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+Result: 
+name salary  Peter 5000
+
+
+3rd highest salary:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE 3-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+Result:
+name salary
+John 4000
+
+
+=========================
+
+-- creating Employee table in Oracle 
+CREATE TABLE Employee (name varchar(10), salary int); 
+inserting sample data into Employee table INSERT INTO Employee VALUES ('Rick', 3000); 
+INSERT INTO Employee VALUES ('John', 4000); INSERT INTO Employee VALUES ('Shane', 3000); 
+INSERT INTO Employee VALUES ('Peter', 5000); INSERT INTO Employee VALUES ('Jackob', 7000);
+
+
+SQL Query:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+for the 2nd maximum you can replace N with 2, and for 3rd maximum replace N with 3, here is the output:
+
+2nd highest salary:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE N-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)SELECT name, salary 
+FROM #Employee e1
+WHERE 2-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+Result: 
+name salary  Peter 5000
+
+
+3rd highest salary:
+
+SELECT name, salary 
+FROM #Employee e1
+WHERE 3-1 = (SELECT COUNT(DISTINCT salary) FROM #Employee e2
+WHERE e2.salary > e1.salary)
+
+Result:
+name salary
+John 4000
